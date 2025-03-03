@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%= title %></title>
+  </head>
+  <h1><%= title %></h1>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% types.forEach(type => { %>
+        <tr>
+          <td><%= type.name %></td>
+          <td><%= type.id %></td>
+          <td>
+            <a href="/types/<%= type.id %>/pokemons">View Pokemons of This Type</a>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  <a href="/">
+    <button>Back to Homepage</button>
+  </a>
+</html>

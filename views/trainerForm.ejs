@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%= title %></title>
+  </head>
+  <body>
+    <form
+      action="<%= trainer ? `/trainers/${trainer.id}` : '/trainers/new' %>"
+      method="POST"
+    >
+      <h1><%= trainer ? "View/Edit Trainer" : "Add New Trainer" %></h1>
+      <label for="name">Trainer Name:</label>
+      <input type="text" name="name" id="name" value="<%= trainer ? trainer.name : '' %>" required />
+      <% if (trainer) { %>
+        <label for="id">ID:</label>
+        <input type="hidden" name="id" value="<%= trainer.id %>">
+      <% } %>
+      <button type="submit"><%= trainer ? "Update Trainer" : "Create Trainer" %></button>
+      <% if (trainer) { %>
+        <button type="submit" formmethod="POST" formaction="/trainers/<%= trainer.id %>/delete">Delete Trainer</button>
+      <% } %>
+    </form>
+    <% if (trainer && trainer.id) {  %>
+        <h2>Pokemon Owned</h2>
+        <% if (pokemons.length === 0) { %>
+            <p>This trainer has no Pokemon.</p>
+        <% } else { %>
+            <ul>
+                <% pokemons.forEach(pokemon => { %>
+                    <li><%= pokemon.name %></li>
+                <% }) %>
+            </ul>
+        <% } %>
+    <% } %>
+    <a href="/trainers">
+        <button>Back to Trainers</button>
+    </a>
+    <a href="/">
+        <button>Back to Homepage</button>
+    </a>
+  </body>
+</html>

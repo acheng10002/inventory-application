@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%= title %></title>
+  </head>
+  <h1><%= title %></h1>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Pokemon of This Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% pokemons.forEach(pokemon => { %>
+        <tr>
+          <td><%= pokemon.name %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  <a href="/types">
+    <button>Back to Types</button>
+  </a>
+  <a href="/">
+    <button>Back to Homepage</button>
+</a>
+</html>

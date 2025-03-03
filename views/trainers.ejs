@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%= title %></title>
+  </head>
+  <h1><%= title %></h1>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% trainers.forEach(trainer => { %>
+        <tr>
+          <td><%= trainer.name %></td>
+          <td><%= trainer.id %></td>
+          <td>
+            <a href="/trainers/<%= trainer.id %>">View/Edit</a>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  <a href="/trainers/new">
+    <button>Add New Trainer</button>
+  </a>
+  <a href="/">
+    <button>Back to Homepage</button>
+  </a>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pokemons</title>
+  </head>
+  <h1><%= title %></h1>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Pokemon_ID</th>
+        <th>Type</th>
+        <th>Level</th>
+        <th>Trainer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% pokemons.forEach(pokemon => { %>
+        <tr>
+          <td><%= pokemon.name %></td>
+          <td><%= pokemon.id %></td>
+          <td><%= pokemon.type_name %></td>
+          <td><%= pokemon.level %></td>
+          <td><%= pokemon.trainer_name %></td>
+          <td>
+            <a href="/pokemons/<%= pokemon.id %>">View/Edit</a>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  <a href="/pokemons/new">
+    <button>Add New Pokemon</button>
+  </a>
+  <a href="/">
+    <button>Back to Homepage</button>
+  </a>
+</html>

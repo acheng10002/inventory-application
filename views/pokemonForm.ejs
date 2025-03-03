@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pokemon</title>
+  </head>
+  <body>
+    <form
+      action="<%= pokemon ? `/pokemons/${pokemon.id}` : '/pokemons/new' %>"
+      method="POST"
+    >
+      <h1><%= pokemon ? "View/Edit Pokemon" : "Add New Pokemon" %></h1>
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name" value="<%= pokemon ? pokemon.name : '' %>" required />
+      <% if (pokemon) { %>
+        <label hidden for="id">Pokemon_ID:</label>
+        <input type="hidden" name="id" value="<%= pokemon.id %>" >
+      <% } %>
+      <label for="type_id">Type_ID:</label>
+      <select name="type_id" required>
+        <option value="" disabled selected>Select a Type</option>
+        <% types.forEach(type => { %>
+            <option value="<%= type.id %>" <%= pokemon && pokemon.type_id === type.id ? 'selected' : '' %>>
+                <%= type.id %> (<%= type.name %>)
+            </option>
+        <% }) %>
+      </select>
+      <label for="level">Level:</label>
+      <input type="number" name="level" id="level" min="1" max="100" value="<%= pokemon ? pokemon.level : '1' %>" required />
+      <label for="trainer_id">Trainer_ID:</label>
+      <select name="trainer_id" required>
+        <option value="" disabled selected>Select a Trainer</option>
+        <% trainers.forEach(trainer => { %>
+            <option value="<%= trainer.id %>" <%= pokemon && pokemon.trainer_id === trainer.id ? 'selected' : '' %>>
+                <%= trainer.id %> (<%= trainer.name %>)
+            </option>
+        <% }) %>
+      </select>
+      <button type="submit"><%= pokemon ? "Update Pokemon" : "Create Pokemon" %></button>
+      <% if (pokemon) { %>
+        <button type="submit" formmethod="POST" formaction="/pokemons/<%= pokemon.id %>/delete">Delete Pokemon</button>
+      <% } %>
+    </form>
+    <a href="/pokemons">
+        <button>Back to Pokemons</button>
+    </a>
+    <a href="/">
+        <button>Back to Homepage</button>
+    </a>
+  </body>
+</html>
