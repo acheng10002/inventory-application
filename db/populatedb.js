@@ -2,6 +2,8 @@
 require("dotenv").config();
 const pool = require("./pool");
 
+/* each pokemon must be contained in a type
+a trainer can have multiple pokemons */
 const SQL = `
     CREATE TABLE IF NOT EXISTS Trainers (
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
